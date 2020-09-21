@@ -3,7 +3,7 @@ This project was the contribution by @joenotcharles and @colinbendell for the 19
 
 ![VP 1.01 Screenshot from 1995](vp.png)
 
-#Overview
+# Overview
 
 VisaulProgramming (VP) is an IDE that utilizes flowcharts and flowchart symbols as the principle paradigm to build applications. The Object of VP was to enable early developers to utilize principles commonly taught in computing classes to build their first applications. In this way, the student can bring to life a real program that accepted input, evaluated conditional logic, assigned variables and produced output. 
 
