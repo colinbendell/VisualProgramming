@@ -11,13 +11,15 @@ In the early 1990s many high school class environments attempted to teach elemen
 
 # Historical Context
 
-## The GUI Environment
+## The TUI / GUI Environment
 
-In 1994, development on Windows 3.1 was very nascent and not accessible to the authors of VP. However, the latest releases of Norton Commander and the Norton suite of tools, inspired the potential of a GUI environment within DOS 6.2's REAL mode.
+In 1994, development on Windows 3.1 was very nascent and not accessible to the authors of VP. However, the latest releases of Norton Commander and the Norton suite of tools, inspired the potential of a TUI/GUI environment within DOS 6.2's real mode.
 
-To do this, the GUI was actually a text based interface that used 'mode 11', or EGA-HI, which allowed for 50 rows (over the standard 25) and allowed for character remapping. Functionally this provided a 640x350 with 16 colours interface. In this mode, standard characters could be re-defined and re-drawn to create the illusion of a graphical environment. Mouse movements likewise were clever manipulations of the characters. 
+The early iterations used a Text User Interface in VGA `mode 11`(?) which provided a 80x50 character mode and could be combined with character remapping to provide custom glyphs. This could ceate an illusion of a graphical interface but using standard text mode and avoid the complications of having multiple pages and managing sprites. However, the unforseen complication of this was the processing required to track mouse movements and dynamically redraw and push glyphs.
 
-In retrospect, it might have been easier to construct an object model such that the win16/win32 gui dlls provided. At the time however, just adopting the object and types model newly introduced in Pascal 5.5 was enough of a mind fuck.
+Using the text mode was ultimately abandonded to use a simple graphics mode (EGA Hi or 640x350 with 16colors). A shareware library was used that provided basic mouse tracking and offered a minimal set of modal APIs without having to construct a graphical object model like which was needed in the win16/win32 CTL.DLL.
+
+In retrospect, it might have been easier to focus on windows development and adopting the windows APIs. Windows development was very nascent and required C or C++. Just adopting the Pascal's 5.5 newly introduced object and types model was enough of a mind fuck.
 
 ## Extended Memory Specification (XMS) extensions
 One of the practical problems with building a DOS application was the 512K / 640K limitation. Quickly the environment needed for VP required more memory allocation to avoid the random crashing. Since the application was written in REAL mode and was strictly a text based application, the reserved EMS between 640K and 1024 could be repurposed. Unfortunately the use of EMS proved problematic because of the use of the EGA mode and a slightly more traditional approach was adopted to access the XMS memory space. 
@@ -47,7 +49,7 @@ Each node could be connected to another node which would draw the necessary line
 
 Selecting any node on the canvas would reveal details of the instruction of the node. This was more relevant for assign and output operations.
 
-Finally, the program could be saved, loaded, or run like most IDEs. As mentioned above, it also provided the ability to transpile to a simple *.pas pascal program. (And a C transpile was also prototyped but can't be found in this saved state)
+Finally, the program could be saved, loaded, or run like most IDEs. As mentioned above, it also provided the ability to transpile to a simple *.pas pascal program. (And a C transpile was also prototyped but can't be found in this saved copy of the code)
 
 While the input was assumed to be mouse driven, the environment adopted standard Borland hotkeys (F2 Save, F3 load, F5 run) and the F10 menu which was also in vogue at the time. Arrow keys could also be used to navigate around in the menu context
 
