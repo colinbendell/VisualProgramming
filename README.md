@@ -4,12 +4,15 @@ This project was the contribution by @joenotcharles and @colinbendell for the 19
 ![VP 1.01 Screenshot from 1995](vp.png)
 
 #Overview
+
 VisaulProgramming (VP) is an IDE that utilizes flowcharts and flowchart symbols as the principle paradigm to build applications. The Object of VP was to enable early developers to utilize principles commonly taught in computing classes to build their first applications. In this way, the student can bring to life a real program that accepted input, evaluated conditional logic, assigned variables and produced output. 
 
 In the early 1990s many high school class environments attempted to teach elementary computer science using academic tools like flowcharting. However, since the majority of teachers at the time did not have access to software development training themselves, it was difficult for students to bridge these concepts and start to develop their own programs. Recognizing this need, Visual Programming uses the familiar shapes and concepts of flowcharts and provides a GUI where the student can construct their logic and turn it into an application. This application could be executed in the IDE or transpiled into equivalent Pascal source code.
 
 # Historical Context
+
 ## The GUI Environment
+
 In 1994, development on Windows 3.1 was very nascent and not accessible to the authors of VP. However, the latest releases of Norton Commander and the Norton suite of tools, inspired the potential of a GUI environment within DOS 6.2's REAL mode.
 
 To do this, the GUI was actually a text based interface that used 'mode 11' which allowed for 50 rows (over the standard 25) and allowed for character remapping. In this mode, standard characters could be re-defined and re-drawn to create the illusion of a graphical environment. Mouse movements likewise were clever manipulations of the characters. 
