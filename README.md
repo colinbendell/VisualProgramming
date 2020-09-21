@@ -15,17 +15,20 @@ In the early 1990s many high school class environments attempted to teach elemen
 
 In 1994, development on Windows 3.1 was very nascent and not accessible to the authors of VP. However, the latest releases of Norton Commander and the Norton suite of tools, inspired the potential of a GUI environment within DOS 6.2's REAL mode.
 
-To do this, the GUI was actually a text based interface that used 'mode 11' which allowed for 50 rows (over the standard 25) and allowed for character remapping. In this mode, standard characters could be re-defined and re-drawn to create the illusion of a graphical environment. Mouse movements likewise were clever manipulations of the characters. 
+To do this, the GUI was actually a text based interface that used 'mode 11', or EGA-HI, which allowed for 50 rows (over the standard 25) and allowed for character remapping. Functionally this provided a 640x350 with 16 colours interface. In this mode, standard characters could be re-defined and re-drawn to create the illusion of a graphical environment. Mouse movements likewise were clever manipulations of the characters. 
 
 In retrospect, it might have been easier to construct an object model such that the win16/win32 gui dlls provided. At the time however, just adopting the object and types model newly introduced in Pascal 5.5 was enough of a mind fuck.
 
-## Extended Memory System (EMS) extensions
-One of the practical problems with building a DOS application was the 512K / 640K limitation. Quickly the environment needed for VP required more memory allocation to avoid the random crashing. Fortunately, since the application was written in REAL mode and was strictly a text based application, the reserved EMS between 640K and 1024 could be repurposed. (Traditionally this was where the video card memory resided and if you were running an protected mode application and utilizing the graphical capabilities of the x86 architecture you couldn't touch EMS and had to instead access XMS registers).
+## Extended Memory Specification (XMS) extensions
+One of the practical problems with building a DOS application was the 512K / 640K limitation. Quickly the environment needed for VP required more memory allocation to avoid the random crashing. Since the application was written in REAL mode and was strictly a text based application, the reserved EMS between 640K and 1024 could be repurposed. Unfortunately the use of EMS proved problematic because of the use of the EGA mode and a slightly more traditional approach was adopted to access the XMS memory space. 
 
-To accomplish this, the build environment required the dos 6.2+ EMM386.SYS service to be loaded and then depended on an a shareware library to unlock this memory space. Again, in retrospect, it probably would have been much simpler to write this in Windows 3.1 and defer the memory management (although the notion of swap files didn't show up until Win95)
+Unfortunately XMS required x86 protected mode to access this memory space. A common work around was to use the dos 6.2+ himem.sys and emm386.sys APIs and which acted as an interrupt bridge to the larger memory space while in real mode. VP depended on these XMS DOS APIs used a common shareware library to remap pascal's operating environment with this additional memory. Again, in retrospect, it probably would have been much simpler to write this in Windows 3.1 and defer the memory management.
 
-## Inline Comments
+## Sad State of Inline Comments
 One of the criteria for the computing competition was to provide all source code with complete inline documentation. At the time we assumed that inline comments were meant to teach the reader how to code and so you will see comments like `{end of if}`. Sadly, this means that most of the actual semantic meaning of the code is lost to time.
+
+## Tabs v. Spaces
+In 1995 we used tabs and spaces interchangeably -- like animals.
 
 # Application Functionality
 The application consisted of 7 basic nodes:
@@ -48,5 +51,7 @@ Finally, the program could be saved, loaded, or run like most IDEs. As mentioned
 
 While the input was assumed to be mouse driven, the environment adopted standard Borland hotkeys (F2 Save, F3 load, F5 run) and the F10 menu which was also in vogue at the time. Arrow keys could also be used to navigate around in the menu context
 
-# Conclusion
-While this programming IDE was submitted to Guelph for the compute project, I suspect we were not very good at marketing our accomplishments. Like naive early devs we assumed that our code was self evident and that the complexities of working in a simulated GUI environment but in REAL mode would be obvious. Needless to say, we did not win the competition nor did we even get an honourable mention. We did get a cool textbook though. 
+# Epilogue
+While this programming IDE was submitted to Guelph for the compute project, I suspect we were not very good at marketing our accomplishments. Like naive early devs we assumed that our code was self evident and that the complexities of working in a simulated GUI environment but in REAL mode would be obvious. Needless to say, we did not win the competition nor did we even get an honourable mention. 
+
+We did get a cool textbook though. 
